@@ -31,12 +31,35 @@
 
 ## 安装与使用
 
-### 方式一：油猴脚本（推荐）
+### 方式一：篡改猴（Tampermonkey）—— 推荐，最简单
 
-1. 安装 [Tampermonkey](https://www.tampermonkey.net/)
-2. 新建脚本，粘贴 [`chaoxing-patch.user.js`](./chaoxing-paste-unlock/chaoxing-patch.user.js) 全文并保存
-3. 刷新学习通作业页面
-4. 在编辑框中直接 `Ctrl + V`
+#### 第 1 步：安装篡改猴
+
+在浏览器扩展商店安装 Tampermonkey（篡改猴），安装后确认扩展图标处于「已启用」状态。
+
+#### 第 2 步：点击「添加新脚本」
+
+点击浏览器右上角的篡改猴图标，在菜单中选择 **添加新脚本...**
+
+![篡改猴菜单](docs/images/tampermonkey-menu.png)
+
+#### 第 3 步：粘贴脚本代码
+
+页面会打开「新建用户脚本」编辑器，里面是一段默认模板。**全选删除**（`Ctrl + A` → `Delete`），然后粘贴 [`chaoxing-patch.user.js`](./chaoxing-paste-unlock/chaoxing-patch.user.js) 的完整内容。
+
+![粘贴脚本代码](docs/images/tampermonkey-editor.png)
+
+#### 第 4 步：保存
+
+按 `Ctrl + S`，或点击顶部菜单 **文件 → 保存**。
+
+#### 第 5 步：确认已启用
+
+打开篡改猴的「管理面板」，列表中应出现 **学习通作业粘贴解禁 (REA Patch v2)**，左侧开关为绿色即表示已启用。
+
+![已安装脚本](docs/images/tampermonkey-installed.png)
+
+完成后打开或刷新学习通作业页面，直接在答题框中 `Ctrl + V` 即可。
 
 ### 方式二：Playwright 启动器
 
@@ -92,10 +115,16 @@ window.__reaUnblockPaste()   // 返回本次清理的拦截器数量
 ## 文件结构
 
 ```
-chaoxing-paste-unlock/
-├── chaoxing-patch.user.js   # 油猴脚本（核心补丁逻辑）
-├── chaoxing-patch.mjs       # Playwright 启动器，复用上面的脚本
-└── package.json             # 依赖：playwright-core
+Script/
+├── README.md                    # 项目说明（本文件）
+├── docs/images/                 # 安装步骤截图
+│   ├── tampermonkey-menu.png
+│   ├── tampermonkey-editor.png
+│   └── tampermonkey-installed.png
+└── chaoxing-paste-unlock/
+    ├── chaoxing-patch.user.js   # 篡改猴脚本（核心补丁逻辑）
+    ├── chaoxing-patch.mjs       # Playwright 启动器，复用上面的脚本
+    └── package.json             # 依赖：playwright-core
 ```
 
 ---
